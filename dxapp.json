@@ -20,6 +20,13 @@
       "patterns": ["*.fasta", "*.fastq", "*.fasta.gz", "*.fastq.gz", "*.fastq.bz2", "*.sam", "*.bam"]
     },
     {
+      "name": "mergeShortPaired",
+      "label": "Merge \"Short reads\" and \"Short reads (paired)\" into one paired-end library",
+      "help": "If checked, the two files given in \"Short reads\" and \"Short reads (paired)\" will be treated as split files from one paired-end library, and merged together",
+      "class": "boolean",
+      "default": false
+    },
+    {
       "name": "short2",
       "label": "Short reads (library 2)",
       "class": "file",
@@ -34,6 +41,13 @@
       "patterns": ["*.fasta", "*.fastq", "*.fasta.gz", "*.fastq.gz", "*.fastq.bz2", "*.sam", "*.bam"]
     },
     {
+      "name": "mergeShortPaired2",
+      "label": "Merge \"Short reads (library 2)\" and \"Short reads (paired, library 2)\" into one paired-end library",
+      "help": "If checked, the two files given in \"Short reads (library 2)\" and \"Short reads (paired, library 2)\" will be treated as split files from one paired-end library, and merged together",
+      "class": "boolean",
+      "default": false
+    },
+    {
       "name": "long",
       "label": "Long reads",
       "class": "file",
@@ -46,6 +60,13 @@
       "class": "file",
       "optional": true,
       "patterns": ["*.fasta", "*.fastq", "*.fasta.gz", "*.fastq.gz", "*.fastq.bz2", "*.sam", "*.bam"]
+    },
+    {
+      "name": "mergeLongPaired2",
+      "label": "Merge \"Long reads\" and \"Long reads (paired)\" into one paired-end library",
+      "help": "If checked, the two files given in \"Long reads\" and \"Long reads (paired)\" will be treated as split files from one paired-end library, and merged together",
+      "class": "boolean",
+      "default": false
     },
     {
       "name": "hash_length",
