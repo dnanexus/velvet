@@ -22,9 +22,7 @@ This app requires one or more files with reads in a format recognized by Velvet 
 
 ## What does this app output?
 
-This app outputs a gzipped FASTA file with the sequence assembly.
-
-TODO: MORE OUTPUTS
+This app outputs a FASTA file with the sequence assembly.
 
 ## How does this app work?
 
