@@ -16,7 +16,7 @@ def main(hash_length, **kwargs):
         run_shell("dx-unpack2 short shortUnpacked")
         dxpy.download_dxfile(kwargs['shortPaired']["$dnanexus_link"], 'shortPaired')
         run_shell("dx-unpack2 shortPaired shortPairedUnpacked")
-        run_shell("shuffleSeqs-fast shortUnpacked shortPairedUnpacked shortPairedMerged")
+        run_shell("shuffleSeqs-fast shortUnpacked shortPairedUnpacked > shortPairedMerged")
         del kwargs['short'], kwargs['shortPaired']
         velveth_cmd += ' -shortPaired shortPairedMerged'
     if kwargs.get('mergeShortPaired2'):
@@ -24,7 +24,7 @@ def main(hash_length, **kwargs):
         run_shell("dx-unpack2 short2 shortUnpacked2")
         dxpy.download_dxfile(kwargs['shortPaired2']["$dnanexus_link"], 'shortPaired2')
         run_shell("dx-unpack2 shortPaired2 shortPairedUnpacked2")
-        run_shell("shuffleSeqs-fast shortUnpacked2 shortPairedUnpacked2 shortPairedMerged2")
+        run_shell("shuffleSeqs-fast shortUnpacked2 shortPairedUnpacked2 > shortPairedMerged2")
         del kwargs['short2'], kwargs['shortPaired2']
         velveth_cmd += ' -shortPaired2 shortPairedMerged2'
     if kwargs.get('mergeLongPaired'):
@@ -32,7 +32,7 @@ def main(hash_length, **kwargs):
         run_shell("dx-unpack2 long longUnpacked")
         dxpy.download_dxfile(kwargs['longPaired']["$dnanexus_link"], 'longPaired')
         run_shell("dx-unpack2 longPaired longPairedUnpacked")
-        run_shell("shuffleSeqs-fast longUnpacked longPairedUnpacked longPairedMerged")
+        run_shell("shuffleSeqs-fast longUnpacked longPairedUnpacked > longPairedMerged")
         del kwargs['long'], kwargs['longPaired']
         velveth_cmd += ' -longPaired longPairedMerged'
 
