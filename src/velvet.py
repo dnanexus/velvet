@@ -11,22 +11,28 @@ def run_shell(command):
 def main(hash_length, **kwargs):
     velveth_cmd = "velveth velvet_wd {hash_length} -fmtAuto".format(hash_length=hash_length)
 
-    if kwargs['mergeShortPaired']:
+    if kwargs.get('mergeShortPaired'):
         dxpy.download_dxfile(kwargs['short']["$dnanexus_link"], 'short')
+        run_shell("dx-unpack2 short shortUnpacked")
         dxpy.download_dxfile(kwargs['shortPaired']["$dnanexus_link"], 'shortPaired')
-        run_shell("shuffleSeqs-fast short shortPaired shortPairedMerged")
+        run_shell("dx-unpack2 shortPaired shortPairedUnpacked")
+        run_shell("shuffleSeqs-fast shortUnpacked shortPairedUnpacked shortPairedMerged")
         del kwargs['short'], kwargs['shortPaired']
         velveth_cmd += ' -shortPaired shortPairedMerged'
-    if kwargs['mergeShortPaired2']:
+    if kwargs.get('mergeShortPaired2'):
         dxpy.download_dxfile(kwargs['short2']["$dnanexus_link"], 'short2')
+        run_shell("dx-unpack2 short2 shortUnpacked2")
         dxpy.download_dxfile(kwargs['shortPaired2']["$dnanexus_link"], 'shortPaired2')
-        run_shell("shuffleSeqs-fast short2 shortPaired2 shortPairedMerged2")
+        run_shell("dx-unpack2 shortPaired2 shortPairedUnpacked2")
+        run_shell("shuffleSeqs-fast shortUnpacked2 shortPairedUnpacked2 shortPairedMerged2")
         del kwargs['short2'], kwargs['shortPaired2']
         velveth_cmd += ' -shortPaired2 shortPairedMerged2'
-    if kwargs['mergeLongPaired']:
+    if kwargs.get('mergeLongPaired'):
         dxpy.download_dxfile(kwargs['long']["$dnanexus_link"], 'long')
+        run_shell("dx-unpack2 long longUnpacked")
         dxpy.download_dxfile(kwargs['longPaired']["$dnanexus_link"], 'longPaired')
-        run_shell("shuffleSeqs-fast long longPaired longPairedMerged")
+        run_shell("dx-unpack2 longPaired longPairedUnpacked")
+        run_shell("shuffleSeqs-fast longUnpacked longPairedUnpacked longPairedMerged")
         del kwargs['long'], kwargs['longPaired']
         velveth_cmd += ' -longPaired longPairedMerged'
 
