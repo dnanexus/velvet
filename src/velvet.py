@@ -12,6 +12,8 @@ def main(hash_length, **kwargs):
     velveth_cmd = "velveth velvet_wd {hash_length} -fmtAuto".format(hash_length=hash_length)
 
     if kwargs.get('mergeShortPaired'):
+        if 'short' not in kwargs or 'shortPaired' not in kwargs:
+            raise dxpy.AppError('The "mergeShortPaired" option requires both "short" and "shortPaired" inputs to be specified')
         dxpy.download_dxfile(kwargs['short']["$dnanexus_link"], 'short')
         run_shell("dx-unpack2 short shortUnpacked")
         dxpy.download_dxfile(kwargs['shortPaired']["$dnanexus_link"], 'shortPaired')
@@ -20,6 +22,8 @@ def main(hash_length, **kwargs):
         del kwargs['short'], kwargs['shortPaired']
         velveth_cmd += ' -shortPaired shortPairedMerged'
     if kwargs.get('mergeShortPaired2'):
+        if 'short2' not in kwargs or 'shortPaired2' not in kwargs:
+            raise dxpy.AppError('The "mergeShortPaired2" option requires both "short2" and "shortPaired2" inputs to be specified')
         dxpy.download_dxfile(kwargs['short2']["$dnanexus_link"], 'short2')
         run_shell("dx-unpack2 short2 shortUnpacked2")
         dxpy.download_dxfile(kwargs['shortPaired2']["$dnanexus_link"], 'shortPaired2')
@@ -28,6 +32,8 @@ def main(hash_length, **kwargs):
         del kwargs['short2'], kwargs['shortPaired2']
         velveth_cmd += ' -shortPaired2 shortPairedMerged2'
     if kwargs.get('mergeLongPaired'):
+        if 'long' not in kwargs or 'longPaired' not in kwargs:
+            raise dxpy.AppError('The "mergeLongPaired" option requires both "long" and "longPaired" inputs to be specified')
         dxpy.download_dxfile(kwargs['long']["$dnanexus_link"], 'long')
         run_shell("dx-unpack2 long longUnpacked")
         dxpy.download_dxfile(kwargs['longPaired']["$dnanexus_link"], 'longPaired')
