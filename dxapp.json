@@ -3,7 +3,7 @@
   "title": "Velvet",
   "summary": "Short read de novo assembler using de Bruijn graphs",
   "dxapi": "1.0.0",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "inputSpec": [
     {
       "name": "short",
